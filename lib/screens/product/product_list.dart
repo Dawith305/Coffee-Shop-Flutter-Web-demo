@@ -9,44 +9,50 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
+  final List<String> elements = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Four", "Five", "Six", "Seven"];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        alignment: Alignment.center,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "MODAL BOTTOM SHEET EXAMPLE",
-              style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  letterSpacing: 0.4,
-                  fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return ProductDetail();
-                    });
-              },
-              padding:
-              EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
-              color: Colors.pink,
-              child: Text(
-                'Click Me',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.6),
+            Center(
+              child: Container(
+                child: Text('MENU ITEMS', style: TextStyle(fontSize: 30),),
               ),
+            ),
+            Container(
+                height: MediaQuery.of(context).size.height*0.5,
+                width: MediaQuery.of(context).size.width,
+              alignment: Alignment.center,
+              child: GridView.builder(
+                  itemCount: elements.length,
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 130.0,
+                    crossAxisSpacing: 20.0,
+                    mainAxisSpacing: 20.0,
+                  ),
+                  itemBuilder: (context, i) {
+                    return InkWell(
+                      onTap: (){
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return ProductDetail();
+                            });
+                      },
+                      child: Card(
+                        child: Center(
+                            child: Padding(
+                                padding: EdgeInsets.all(8.0), child: Text(elements[i])
+                            )
+                        )
+                  ),
+                    );
+                  }
+              )
             ),
           ],
         ),
@@ -54,3 +60,6 @@ class _ProductListState extends State<ProductList> {
     );
   }
 }
+
+
+

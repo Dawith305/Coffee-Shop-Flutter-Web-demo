@@ -1,3 +1,4 @@
+import 'package:cofeeshop/config/app_theme.dart';
 import 'package:cofeeshop/models/product.dart';
 import 'package:cofeeshop/state/product_detail_state.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
 
   //default = 1
   int quantity = 1;
+  var theme = AppTheme();
 
   @override
   void initState() {
@@ -47,7 +49,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
             ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              child: Text(context.read<ProductDetailState>().quantity.toString()),
+              child: Text(context.read<ProductDetailState>().quantity.toString(),style: theme.productQuantity,),
             ),
             IconButton(
               icon: Icon(Icons.add_circle),

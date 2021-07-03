@@ -10,7 +10,7 @@ class DemoData {
       'Flat White',
       'Freshly-ground beans and steamed milk',
       125,
-      'coffee.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/330px-A_small_cup_of_coffee.JPG',
       'MILK OPTION',
       [
         Option(1,'Full Milk', 0),

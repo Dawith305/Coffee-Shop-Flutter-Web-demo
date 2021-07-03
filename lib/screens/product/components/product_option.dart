@@ -1,3 +1,4 @@
+import 'package:cofeeshop/config/app_theme.dart';
 import 'package:cofeeshop/models/product.dart';
 import 'package:cofeeshop/state/product_detail_state.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +16,7 @@ class ProductOption extends StatefulWidget {
 
 class _ProductOptionState extends State<ProductOption> {
   var selectedItem;
+  var theme = AppTheme();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class _ProductOptionState extends State<ProductOption> {
                   Text(widget.item.productOptionTitle,
                       textAlign: TextAlign.left,
                       style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                          theme.productOptionTitle),
                   Text('(REQUIRED)',
                       style: TextStyle(fontSize: 12, color: Colors.grey)),
                 ],
@@ -90,6 +92,8 @@ class _ProductOptionState extends State<ProductOption> {
       selectedItem = widget.item.productOptions[index].id;
       var extraCost = widget.item.productOptions[index].additionCost;
       context.read<ProductDetailState>().extraCost = extraCost;
+      context.read<ProductDetailState>().isAddToCartButtDisabled = false;
+
     });
   }
 

@@ -1,3 +1,4 @@
+import 'package:cofeeshop/config/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailHeader extends StatelessWidget {
@@ -6,6 +7,7 @@ class ProductDetailHeader extends StatelessWidget {
 
   ProductDetailHeader(this.name,this.description);
 
+  var theme = AppTheme();
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +15,8 @@ class ProductDetailHeader extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
         children: [
-          Text(name,style: TextStyle(fontSize: 17,fontWeight: FontWeight.w400),),
-          Text(description,style: TextStyle(fontSize: 12,color: Colors.grey ),),
+          Text(name,style: theme.productTitle,),
+          Text(description,style: theme.productDesc,),
         ],
       ),
     );

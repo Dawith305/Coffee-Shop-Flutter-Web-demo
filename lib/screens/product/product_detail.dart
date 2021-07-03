@@ -1,16 +1,20 @@
 import 'dart:html';
 
-import 'package:cofeeshop/config/demo_data.dart';
+import 'package:cofeeshop/config/app_theme.dart';
+import 'package:cofeeshop/state/product_detail_state.dart';
+import 'package:cofeeshop/utiliy/demo_data.dart';
 import 'package:cofeeshop/widgets/add_to_cart_button.dart';
 import 'package:cofeeshop/widgets/quantity_selector.dart';
 import 'package:cofeeshop/screens/product/components/product_detail_header.dart';
 import 'package:cofeeshop/screens/product/components/product_option.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetail extends StatelessWidget with ChangeNotifier {
   var item = DemoData().product1;
   int quantity = 1;
+  var theme = AppTheme();
 
 
 
@@ -28,9 +32,9 @@ class ProductDetail extends StatelessWidget with ChangeNotifier {
               child: Card(child: productDetailComponent(width,height,context)),
             );
           }
-          else if(constraints.maxWidth > 640 && constraints.maxWidth < 1008){
+          else if(constraints.maxWidth > 550 && constraints.maxWidth < 1008){
             return Container(
-              margin: EdgeInsets.symmetric(horizontal: width*0.3),
+              margin: EdgeInsets.symmetric(horizontal: width*0.25),
               child: Card(child: productDetailComponent(width,height,context)),
             );
           }
@@ -48,7 +52,7 @@ class ProductDetail extends StatelessWidget with ChangeNotifier {
 
 
 
-  SingleChildScrollView productDetailComponent(double width,double height,BuildContext context) {
+   productDetailComponent(double width,double height,BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -57,8 +61,8 @@ class ProductDetail extends StatelessWidget with ChangeNotifier {
              Container(
                // height: height*0.3,
                width: width,
-               child: Image.asset(
-                   '/images/${item.imgPath}',
+               child: Image.network(
+                   '${item.imgPath}',
                     height: height*0.4,
                     fit: BoxFit.cover,
                ),
@@ -72,7 +76,8 @@ class ProductDetail extends StatelessWidget with ChangeNotifier {
                    child: IconButton(
                        icon: Icon(Icons.arrow_back_rounded,),
                        onPressed: () {
-                         Navigator.pop(context);
+                         onBackPress(context);
+
                        }),
                  ),
                ),
@@ -92,16 +97,19 @@ class ProductDetail extends StatelessWidget with ChangeNotifier {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('\฿'+
-                        item.price.toString(),
-                        style: TextStyle(fontSize: 17,fontWeight: FontWeight.w400),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text('\฿'+
+                          item.price.toString(),
+                          style: theme.productPrice,
+                        ),
                       ),
                       QuantitySelector(item),
                     ],
                   ),
                 ),
                 ProductOption(item),
-                AddToCartButton(addToCart, quantity, item.price)
+                AddToCartButton(quantity, item.price)
               ],
             ),
           )
@@ -110,7 +118,11 @@ class ProductDetail extends StatelessWidget with ChangeNotifier {
     );
   }
 
-  addToCart() {
+   void onBackPress(BuildContext context) {
+    Navigator.pop(context);
+    Provider.of<ProductDetailState>(context, listen: false).reset();
+  }
 
+  addToCart() {
   }
 }

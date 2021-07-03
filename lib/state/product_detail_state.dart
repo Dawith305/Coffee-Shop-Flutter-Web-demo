@@ -28,6 +28,11 @@ class ProductDetailState with ChangeNotifier, DiagnosticableTreeMixin {
     _isAddToCartButtDisabled = value;
   }
 
+  void toggleCartButton(){
+    _isAddToCartButtDisabled = !_isAddToCartButtDisabled;
+    notifyListeners();
+  }
+
   void addQuantity() {
     _quantity++;
     notifyListeners();
@@ -43,6 +48,7 @@ class ProductDetailState with ChangeNotifier, DiagnosticableTreeMixin {
   void reset() {
     _quantity = 1;
     _extraCost = 0;
+    _isAddToCartButtDisabled = false;
     notifyListeners();
   }
 

@@ -46,10 +46,7 @@ class _AddToCartButtonState extends State<AddToCartButton> {
                   ],
                 ),
               ),
-              onPressed: () =>
-                 addToCart(
-                    context)
-              ,
+              onPressed: () => addToCart(context),
               shape: RoundedRectangleBorder())),
     );
   }
@@ -61,12 +58,10 @@ class _AddToCartButtonState extends State<AddToCartButton> {
     );
   }
 
-   addToCart(BuildContext context) {
-    if (context.read<ProductDetailState>().isAddToCartButtDisabled)
-      return ToastWidget(
-              'Please select one option before proceeding!', Toast.LENGTH_SHORT)
-          .buildToaster(context);
-    else
-      return Container();
+  addToCart(BuildContext context) {
+    return ToastWidget(
+            'Item added to cart', Toast.LENGTH_SHORT)
+        .buildToaster(context);
+    ;
   }
 }

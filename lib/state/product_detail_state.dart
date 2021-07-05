@@ -26,7 +26,7 @@ class ProductDetailState with ChangeNotifier, DiagnosticableTreeMixin {
 
   set isAddToCartButtDisabled(bool value) {
     _isAddToCartButtDisabled = value;
-      notifyListeners();
+      // notifyListeners();
   }
 
   void toggleCartButton(){

@@ -3,6 +3,7 @@
 A new Flutter project.
 
 ## Getting Started
+[Screenshot]https://github.com/Dawith305/coffee-shop-flutter-web-demo/blob/main/coffeshop_screenshot.PNG
 
 This project is a starting point for a Flutter application.
 

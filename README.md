@@ -1,4 +1,4 @@
-# cofeeshop
+# coffeeshop
 
 A new Flutter project.
 
